@@ -1,8 +1,8 @@
 ---
-// FILM — a Bodrum house renovated as you scroll: blueprint (Keşif) → damage stripped (Hazırlık)
-// → insulation boards and render (Yalıtım) → whitewash and daylight (Boya).
-// The SVG markup is the finished, daylight house; scripts/film.ts drives the in-between states.
-// Each scene has a time window [from, to] on a 0–12 film clock; data-map turns scroll progress into that clock.
+// FILM — the same Bodrum house, photographed at every stage of the job, scrubbed by scroll:
+// blueprint → weathered (Keşif) → scaffolding & scraping (Hazırlık) → insulation boards → base render (Yalıtım)
+// → whitewashed (Boya) → dusk (final). Frames live in public/film/, all 2000×1116 and aligned to the same house.
+// Each frame fades in over its [in] window on a 0–12 film clock; data-map turns scroll progress into that clock.
 import Photo from './Photo.astro';
 import { business, copy, type Lang } from '../content';
 import { img } from '../images';
@@ -13,137 +13,58 @@ const t = copy[lang];
 const f = t.film;
 const n = f.notes;
 const wa = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(t.contact.form.greeting)}`;
-// Caption windows on the film clock, matched to the drawing stages in scripts/film.ts.
-const sceneTimes = [[1.4, 3.3], [3.6, 5.7], [6, 8], [8.3, 10.2]];
-const shapes = {
-  main: 'M860 820V420h24v-20h392v20h24v400Z',
-  chimney: 'M1214 400v-64h36v64ZM1204 336v-14h56v14Z',
-  wing: 'M1300 820V624h16v-12h192v12h16v196Z',
-};
-const openings = [
-  'M1010 590v-70a70 70 0 0 1 140 0v70Z',
-  'M900 478h50v62h-50Z',
-  'M900 668h62v82h-62Z',
-  'M1036 668h72v82h-72Z',
-  'M1172 820V704a34 34 0 0 1 68 0v116Z',
-  'M1384 676h62v68h-62Z',
+
+// name, top-of-frame sky colour (fills the space above the photo on tall screens), fade-in window
+const frames: [string, string, [number, number]][] = [
+  ['00-cizim', '#103260', [0, 0]],
+  ['01-eski', '#bcdaed', [1, 1.8]],
+  ['02-hazirlik', '#bcdaed', [3.3, 4.1]],
+  ['03-yalitim', '#bcdaed', [5.6, 6.4]],
+  ['04-siva', '#bcdaed', [7, 7.7]],
+  ['05-bitmis', '#bcdaed', [8.4, 9.4]],
+  ['06-aksam', '#9d9ab1', [10.2, 11]],
 ];
-const blobs = [
-  'M905 585q20-18 46-6q24 10 18 34q-6 22-34 20q-34 0-30-48Z',
-  'M1180 452q30-12 52 6q14 18-6 34q-24 16-46 0q-16-18 0-40Z',
-  'M1420 770q26-20 56-4q18 14 4 34h-62q-14-16 2-30Z',
-  'M1092 760q22-14 50-2q20 14 6 40l-58 4q-12-22 2-42Z',
-];
-const flowers = [
-  [1296, 628, 26], [1322, 606, 22], [1276, 652, 18], [1346, 622, 16], [1306, 588, 14], [1262, 678, 12], [1334, 646, 12],
+// Caption windows on the film clock, matched to the frames above.
+const sceneTimes = [[1.4, 3.3], [3.6, 5.6], [6, 8.1], [8.5, 10.2]];
+// Pins on the photo, in frame pixels (2000×1116).
+const pins: { x: number; y: number; from: number; to: number; b?: string; text: string; warn?: boolean }[] = [
+  { x: 1186, y: 1040, from: 1.5, to: 3.4, b: n.width[0], text: n.width[1] },
+  { x: 868, y: 640, from: 1.65, to: 3.4, b: n.height[0], text: n.height[1] },
+  { x: 1830, y: 770, from: 1.8, to: 3.4, b: n.terrace[0], text: n.terrace[1] },
+  { x: 1508, y: 600, from: 1.95, to: 3.4, text: n.leak, warn: true },
+  { x: 1030, y: 650, from: 4, to: 5.6, text: n.blister, warn: true },
+  { x: 1300, y: 470, from: 4.15, to: 5.6, text: n.crack, warn: true },
+  { x: 1010, y: 700, from: 6.2, to: 8.1, b: n.board[0], text: n.board[1] },
+  { x: 1250, y: 440, from: 7.2, to: 8.1, text: n.mesh },
+  { x: 1760, y: 830, from: 9.3, to: 10.2, text: n.paint },
 ];
 ---
 <section class="film" id="film" data-map="0:0,.08:1,.24:3.2,.42:5.4,.6:7.6,.78:9.8,1:12" aria-labelledby="hero-title">
   <div class="film__stage">
-    <div class="film__bp" aria-hidden="true"></div>
-    <div class="film__sky" aria-hidden="true"></div>
-
-    <svg class="film__svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" role="img" aria-label={f.label}>
-      <defs>
-        <clipPath id="f-walls">
-          <path d={shapes.main} /><path d={shapes.chimney} /><path d={shapes.wing} />
-        </clipPath>
-        <clipPath id="f-rise"><rect data-f="rise" x="840" y="300" width="720" height="540" /></clipPath>
-        <clipPath id="f-sweep"><rect data-f="sweep" x="840" y="300" width="720" height="540" /></clipPath>
-        <pattern id="f-eps" width="120" height="120" patternUnits="userSpaceOnUse">
-          <rect width="120" height="120" fill="#dcd8cc" />
-          <path d="M0 .5h120M0 60.5h120M.5 0v60M60.5 60v60" stroke="#8d96a3" stroke-width="2" fill="none" />
-        </pattern>
-        <linearGradient id="f-sea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#8fbccd" /><stop offset="1" stop-color="#3d7d9e" />
-        </linearGradient>
-      </defs>
-
-      <!-- daylight landscape -->
-      <g data-f="day">
-        <circle cx="700" cy="200" r="56" fill="#f4d9a2" />
-        <path d="M-1200 700c300-40 600-50 800-24 140 18 240 30 400 14 140-30 220-26 380-36 140-10 220 28 340 20 160-12 280-50 500-20 160 20 300-20 480-10 200 10 260 20 300 10v100h-3200Z" fill="#c9c09d" />
-        <rect x="-1200" y="728" width="3200" height="92" fill="url(#f-sea)" />
-        <rect x="-1200" y="820" width="3200" height="400" fill="#e8dec8" />
-        <path d="M-1200 820h3200" stroke="#c98a5c" stroke-width="6" />
-      </g>
-
-      <!-- walls: weathered → plaster → paint -->
-      <g clip-path="url(#f-walls)">
-        <rect data-f="raw" x="840" y="300" width="720" height="540" fill="#a8b298" opacity="0" />
-        <g data-f="damage" opacity="0">
-          {blobs.map((d, i) => <path d={d} fill={i % 2 ? '#c4a466' : '#7d9171'} />)}
-        </g>
-        <g data-f="primer" opacity="0">
-          {blobs.map((d) => <path d={d} fill="#c9ccc7" />)}
-        </g>
-        <g clip-path="url(#f-rise)"><rect data-f="boards" x="840" y="300" width="720" height="540" fill="url(#f-eps)" opacity="0" /></g>
-        <rect data-f="plaster" x="840" y="300" width="720" height="540" fill="#cfcec7" opacity="0" />
-        <g clip-path="url(#f-sweep)" data-f="paint">
-          <path d={shapes.main} fill="#fbfaf5" /><path d={shapes.chimney} fill="#fbfaf5" /><path d={shapes.wing} fill="#eeebe2" />
-        </g>
-      </g>
-      <rect data-f="roller" x="0" y="300" width="12" height="520" fill="#ffffff" opacity="0" />
-
-      <!-- window and door openings stay "cut out" of the wall layers until the house is finished -->
-      <g data-f="holes" fill="#16213a" opacity="0">
-        {openings.map((d) => <path d={d} />)}
-      </g>
-
-      <g data-f="cracks" fill="none" stroke="#c75a32" stroke-width="3" stroke-linecap="round" opacity="0">
-        <path pathLength="1" stroke-dasharray="1" d="m990 610 12 18-8 14 14 20-6 16 10 22" />
-        <path pathLength="1" stroke-dasharray="1" d="m1290 430-14 20 6 16-12 18 4 22" />
-        <path pathLength="1" stroke-dasharray="1" d="m1470 640-10 16 8 12-12 20" />
-      </g>
-
-      <g data-f="openings" fill="#2f5f8f">
-        {openings.map((d) => <path d={d} />)}
-      </g>
-
-      <!-- blueprint line drawing, plotted on load; turns into ink in daylight -->
-      <g data-f="lines" fill="none" stroke="#1b2a44" stroke-width="2.4" stroke-linejoin="round">
-        <path pathLength="1" d="M-1200 820h3200" />
-        <path pathLength="1" d={shapes.main} />
-        <path pathLength="1" d={shapes.chimney} />
-        <path pathLength="1" d={shapes.wing} />
-        {openings.map((d) => <path pathLength="1" d={d} />)}
-        <path pathLength="1" d="M1080 450v140M1010 520h140M931 668v82M1072 668v82M1415 676v68" />
-        <path pathLength="1" d="M800 548c22 72 32 192 12 272h-24c-20-80-10-200 12-272Z" />
-      </g>
-      <path data-f="cypress" d="M800 548c22 72 32 192 12 272h-24c-20-80-10-200 12-272Z" fill="#3f5a3a" />
-
-      <g data-f="flowers" style="transform-origin: 1300px 700px">
-        {flowers.map(([x, y, r], i) => <circle cx={x} cy={y} r={r} fill={i % 3 ? '#c43c7d' : '#e0609a'} />)}
-        <circle cx="1254" cy="660" r="8" fill="#5e7a3a" /><circle cx="1356" cy="640" r="7" fill="#5e7a3a" /><circle cx="1288" cy="596" r="6" fill="#5e7a3a" />
-      </g>
-
-      <!-- annotations -->
-      <g class="film__notes" font-size="22">
-        <g data-f="dims" opacity="0" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path d="M860 870h440M860 860v20M1300 860v20M820 400v420M810 400h20M810 820h20" />
-          <text x="1080" y="908" text-anchor="middle" fill="currentColor" stroke="none"><tspan class="n">{n.width[0]}</tspan> {n.width[1]}</text>
-          <text x="796" y="610" text-anchor="middle" transform="rotate(-90 796 610)" fill="currentColor" stroke="none"><tspan class="n">{n.height[0]}</tspan> {n.height[1]}</text>
-          <text x="1412" y="590" text-anchor="middle" fill="currentColor" stroke="none"><tspan class="n">{n.terrace[0]}</tspan> {n.terrace[1]}</text>
-          <circle cx="1316" cy="614" r="16" stroke="#e07a4f" stroke-dasharray="5 5" />
-          <path d="M1328 602l52-40" stroke="#e07a4f" />
-          <text x="1388" y="556" fill="#e07a4f" stroke="none">{n.leak}</text>
-        </g>
-        <g data-f="damageNotes" opacity="0" fill="none" stroke="#e07a4f" stroke-width="1.6">
-          <path d="M930 610v260M1290 476h52" />
-          <text x="930" y="904" text-anchor="middle" fill="#e07a4f" stroke="none">{n.blister}</text>
-          <text x="1352" y="484" fill="#e07a4f" stroke="none">{n.crack}</text>
-        </g>
-        <g data-f="mantoNotes" opacity="0" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path d="M980 790v80M1236 470h106" />
-          <text x="980" y="904" text-anchor="middle" fill="currentColor" stroke="none"><tspan class="n">{n.board[0]}</tspan> {n.board[1]}</text>
-          <text x="1352" y="478" fill="currentColor" stroke="none">{n.mesh}</text>
-        </g>
-        <g data-f="paintNote" opacity="0" fill="none" stroke="#1b2a44" stroke-width="1.6">
-          <path d="M1400 760v110" />
-          <text x="1400" y="904" text-anchor="middle" fill="#1b2a44" stroke="none">{n.paint}</text>
-        </g>
-      </g>
-    </svg>
+    <div class="film__box" role="img" aria-label={f.label}>
+      <div class="film__push">
+        {frames.map(([name, sky, [a, b]], k) => (
+          <div class="film__frame" data-k={k} data-in={a} data-in-to={b} style={`--sky: ${sky}`}>
+            <img
+              src={`/film/${name}-2000.webp`}
+              srcset={`/film/${name}-1200.webp 1200w, /film/${name}-2000.webp 2000w`}
+              sizes="(max-aspect-ratio: 1/1) 220vw, 100vw"
+              width="2000" height="1116" alt=""
+              decoding="async"
+              fetchpriority={k === 0 ? 'high' : 'low'}
+            />
+          </div>
+        ))}
+        <div class="film__pins" aria-hidden="true">
+          {pins.map((p) => (
+            <p class:list={['film__pin', p.warn && 'film__pin--warn', p.x > 1600 && 'film__pin--left']} data-x={p.x} data-y={p.y} data-from={p.from} data-to={p.to}>
+              <span class="film__pin-dot"></span>
+              <span class="film__pin-label">{p.b && <b>{p.b}</b>} {p.text}</span>
+            </p>
+          ))}
+        </div>
+      </div>
+    </div>
 
     <div class="film__scrim" aria-hidden="true"></div>
     <div class="film__scrim film__scrim--light" aria-hidden="true"></div>
@@ -179,7 +100,7 @@ const flowers = [
       </div>
     </div>
 
-    <figure class="film__photo" data-from="10.9" aria-hidden="true">
+    <figure class="film__photo" aria-hidden="true">
       <Photo src={img['cephe-sonra']} alt={f.photoAlt} sizes="240px" widths={[240, 480]} />
       <figcaption>{f.photoLabel}</figcaption>
     </figure>

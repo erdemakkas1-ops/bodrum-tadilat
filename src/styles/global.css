@@ -171,26 +171,35 @@ html[data-header='dark'] .nav a:hover { color: var(--on-ink); }
 html[data-header='dark'] .lang { border-color: rgb(233 238 247 / 0.25); }
 html[data-header='dark'] .btn-ink { background: var(--on-ink); color: var(--ink); }
 
-.film { position: relative; background: #16213a; }
+.film { position: relative; background: #103260; }
 .js .film:not(.film--static) { height: 640svh; }
 .film__stage { position: relative; height: 100svh; min-height: 560px; overflow: hidden; color: var(--ink); transition: color 0.5s; }
 .js .film:not(.film--static) .film__stage { position: sticky; top: 0; color: var(--on-ink); }
 .js .film.is-light .film__stage { color: var(--ink); }
 
-.film__bp {
-  position: absolute; inset: 0;
-  background-color: #16213a;
-  background-image:
-    linear-gradient(rgb(233 238 247 / 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(233 238 247 / 0.07) 1px, transparent 1px);
-  background-size: 48px 48px;
+/* Photo frames, stacked; film.ts fades each in. --fx/--fy is the photo's object-position (house sits right). */
+.film__box { position: absolute; inset: 0; overflow: hidden; --fx: 60; --fy: 55; }
+.film__push { position: absolute; inset: 0; transform-origin: 82% 60%; will-change: transform; }
+.film__frame { position: absolute; inset: 0; background: var(--sky); }
+.film__frame img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: calc(var(--fx) * 1%) calc(var(--fy) * 1%);
 }
-.film__sky { position: absolute; inset: 0; background: linear-gradient(180deg, #a9cfe2 0%, #dfe9ea 55%, #f3efe6 100%); }
-.js .film:not(.film--static) .film__sky { opacity: 0; }
-.film__svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.js .film:not(.is-ready):not(.film--static) .film__svg { visibility: hidden; }
-.film__notes text { font-family: var(--sans); font-weight: 500; letter-spacing: 0.02em; }
-.film__notes .n { font-weight: 700; }
+/* without JS (or before it runs) the finished house is what you see; film.ts takes over every frame inline */
+.film__frame:not([data-k='0']):not([data-k='5']) { opacity: 0; }
+.js .film:not(.film--static) .film__frame[data-k='5'] { opacity: 0; }
+
+.film__pins { position: absolute; inset: 0; pointer-events: none; }
+.film__pin {
+  position: absolute; margin: 0; display: flex; align-items: center; gap: 8px;
+  transform: translate(-7px, -50%); white-space: nowrap; font-size: 0.8rem; line-height: 1.2;
+  opacity: 0; visibility: hidden;
+}
+.film__pin--left { flex-direction: row-reverse; transform: translate(calc(-100% + 7px), -50%); }
+.film__pin-dot { width: 14px; height: 14px; flex-shrink: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgb(255 255 255 / 0.35); }
+.film__pin--warn .film__pin-dot { background: var(--terra-hi); box-shadow: 0 0 0 4px rgb(201 101 61 / 0.35); }
+.film__pin-label { padding: 5px 10px; border-radius: 3px; background: rgb(18 29 49 / 0.8); color: #fff; font-weight: 500; }
+.film__pin-label b { font-weight: 700; }
 
 .film__scrim {
   position: absolute; inset: 0; pointer-events: none;
@@ -201,7 +210,7 @@ html[data-header='dark'] .btn-ink { background: var(--on-ink); color: var(--ink)
 /* In daylight the copy sits over sea and hills: a limewash veil keeps it readable. */
 .film .film__scrim--light {
   opacity: 0;
-  background: linear-gradient(90deg, rgb(243 239 230 / 0.9) 0%, rgb(243 239 230 / 0.6) 34%, transparent 58%);
+  background: linear-gradient(90deg, rgb(243 239 230 / 0.86) 0%, rgb(243 239 230 / 0.55) 32%, transparent 52%);
 }
 .film.is-light .film__scrim--light, html:not(.js) .film__scrim--light, .film--static .film__scrim--light { opacity: 1; }
 
@@ -224,7 +233,7 @@ html[data-header='dark'] .btn-ink { background: var(--on-ink); color: var(--ink)
 .hero-title em, .film__title em { font-style: italic; font-weight: 300; color: var(--terra-hi); }
 .film.is-light :is(.hero-title, .film__title) em, html:not(.js) .film em, .film--static em { color: var(--terra); }
 .film__lede { margin-top: clamp(1rem, 2vw, 1.6rem); max-width: 38ch; font-size: clamp(1.02rem, 0.98rem + 0.3vw, 1.18rem); color: var(--on-ink-2); transition: color 0.5s; }
-.film.is-light .film__lede, html:not(.js) .film__lede, .film--static .film__lede { color: var(--ink-2); }
+.film.is-light .film__lede, html:not(.js) .film__lede, .film--static .film__lede { color: var(--ink-2); text-shadow: 0 1px 14px rgb(243 239 230 / 0.9); }
 .hero-ctas { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem 1.75rem; align-items: center; }
 
 .film__photo {
@@ -464,7 +473,7 @@ html:not(.js) .film__hint, .film--static .film__hint { display: none; }
 
 .sticky-bar { display: none; }
 
-/* Tall screens: copy on top, the house sits in the lower part of the stage (see frameView in film.ts). */
+/* Tall screens: copy on top, the photo sits in the lower part of the stage and each frame's own sky fills the rest. */
 @media (max-aspect-ratio: 1/1) {
   .film__copy { align-items: start; padding-top: calc(var(--header-h) + clamp(20px, 5vh, 56px)); }
   .film__scrim { background: linear-gradient(180deg, rgb(22 33 58 / 0.7) 0%, rgb(22 33 58 / 0.3) 45%, transparent 60%); }
@@ -472,11 +481,20 @@ html:not(.js) .film__hint, .film--static .film__hint { display: none; }
   .hero-title { font-size: clamp(2.6rem, 1rem + 8vw, 5rem); }
   .film__title { font-size: clamp(2.4rem, 1rem + 7vw, 4.6rem); }
   .film__photo { top: auto; bottom: calc(46% + 12px); width: clamp(120px, 26vw, 200px); }
-  /* the house is drawn smaller here, so its labels get larger drawing units to stay readable */
-  .film__notes text { font-size: 30px; }
+  /* the whole house (≈1085 of 2000 frame px) fits the width: cap the height at 103vw, centre it with --fx */
+  .film__box { --fx: 94; --fy: 50; --photo-bottom: 0px; }
+  .film__push { transform-origin: 70% 85%; }
+  .film__frame img {
+    inset: auto 0 var(--photo-bottom) 0; height: min(56%, 103vw);
+    -webkit-mask-image: linear-gradient(transparent, #000 16%);
+    mask-image: linear-gradient(transparent, #000 16%);
+  }
+  .film__pin { font-size: 0.72rem; }
 }
 @media (max-width: 599px) {
   .film__photo { display: none; }
+  /* keep the photo clear of the sticky call/WhatsApp bar */
+  .film__box { --photo-bottom: calc(60px + env(safe-area-inset-bottom)); }
   .film__lede { font-size: 0.98rem; }
   .hero-ctas { margin-top: 1.4rem; }
   .film__hint { bottom: calc(76px + env(safe-area-inset-bottom)); }
