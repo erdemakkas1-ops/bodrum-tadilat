@@ -67,6 +67,16 @@ const tr = {
     before: 'Önce',
     after: 'Sonra',
     sliderLabel: 'Önce ve sonra arasında geçiş',
+    scopeTitle: 'Yapılan işler',
+    stripTitle: 'Sahadan',
+    stripAlt: 'Bu işin ara aşamalarından bir fotoğraf',
+    cta: 'Benzer bir iş mi var? Fotoğraf gönderin',
+    scopes: {
+      teras: ['Kırık korkuluk sıvasının onarımı', 'Eski zeminin sökümü ve şap', 'Büyük ebat seramik döşeme', 'Korkuluk ve duvarlarda beyaz boya'],
+      teras2: ['Duvar başlıklarının yeniden sıvanması', 'Zeminde tek parça görünümlü seramik', 'Pergola altı duvarların boyası'],
+      merdiven: ['Dağınık taş basamakların sökümü', 'Seramik basamak ve rıht', 'Bitişik duvarda mantolama ve boya'],
+      avlu: ['Kabaran yüzeyin zımpara ve tamiri', 'Kemerlerde sıva ve beyaz boya', 'Avlu zemininde seramik'],
+    } as Record<string, string[]>,
     projects: [
       { id: 'teras', tab: 'Teras', title: 'Manzaralı teras', text: 'Kırık korkuluk sıvası onarıldı, eski zemin söküldü; büyük ebat seramik ve beyaz boya ile yenilendi.', beforeAlt: 'Terasın eski hali: dökülen sıva ve lekeli zemin', afterAlt: 'Terasın yeni hali: düzgün beyaz korkuluk ve gri seramik zemin' },
       { id: 'teras2', tab: 'Pergola altı', title: 'Pergola altı oturma alanı', text: 'Aynı evin deniz gören köşesi. Duvar başlıkları yeniden sıvandı, zemin tek parça görünümde döşendi.', beforeAlt: 'Pergola altı terasın eski hali', afterAlt: 'Pergola altı terasın yenilenmiş hali, arkada deniz ve tepeler' },
@@ -204,6 +214,16 @@ const en: typeof tr = {
     before: 'Before',
     after: 'After',
     sliderLabel: 'Reveal before and after',
+    scopeTitle: 'What we did',
+    stripTitle: 'From the site',
+    stripAlt: 'A photo from this job in progress',
+    cta: 'Got a similar job? Send us a photo',
+    scopes: {
+      teras: ['Repaired the cracked parapet render', 'Removed the old floor, new screed', 'Laid large-format tiles', 'White paint on parapet and walls'],
+      teras2: ['Re-rendered the wall caps', 'Tiles laid to read as one surface', 'Painted the walls under the pergola'],
+      merdiven: ['Removed the loose stone steps', 'Tiled treads and risers', 'Insulated and painted the adjoining wall'],
+      avlu: ['Sanded and repaired the blistered surface', 'Rendered and painted the arches white', 'Tiled the courtyard floor'],
+    } as Record<string, string[]>,
     projects: [
       { id: 'teras', tab: 'Terrace', title: 'Sea-view terrace', text: 'Cracked parapet plaster repaired, old floor removed; relaid with large-format tiles and finished in white.', beforeAlt: 'Terrace before: flaking plaster and stained floor', afterAlt: 'Terrace after: clean white parapet and grey tiled floor' },
       { id: 'teras2', tab: 'Pergola', title: 'Under the pergola', text: 'The sea-facing corner of the same house. Wall caps re-plastered, floor laid to read as one surface.', beforeAlt: 'Pergola terrace before', afterAlt: 'Pergola terrace after, with the sea and hills behind' },

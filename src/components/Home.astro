@@ -84,10 +84,29 @@ const processImg = ['surec-1-kazima', 'surec-2-sap', 'surec-3-kat1', 'surec-4-ka
                 <input class="compare-range" type="range" min="0" max="100" value="50" aria-label={`${t.ba.sliderLabel}: ${p.title}`} />
               </div>
               <div class="ba-text">
-                <p class="num big">{pad(i + 1)}<span>/{pad(t.ba.projects.length)}</span></p>
-                <h3 class="h3">{p.title}</h3>
-                <p>{p.text}</p>
-                <p class="hint">{t.ba.hint}</p>
+                <div class="ba-head">
+                  <p class="num big">{pad(i + 1)}<span>/{pad(t.ba.projects.length)}</span></p>
+                  <h3 class="h3">{p.title}</h3>
+                  <p>{p.text}</p>
+                </div>
+                <div>
+                  <p class="ba-label">{t.ba.scopeTitle}</p>
+                  <ol class="ba-list" role="list">
+                    {t.ba.scopes[p.id].map((s, k) => <li><span class="num">{pad(k + 1)}</span>{s}</li>)}
+                  </ol>
+                </div>
+                <div>
+                  <p class="ba-label">{t.ba.stripTitle}</p>
+                  <ul class="ba-thumbs" role="list">
+                    {[1, 2, 3].map((k) => (
+                      <li><Photo src={img[`ba-${p.id}-s${k}`]} alt={t.ba.stripAlt} sizes="(min-width: 960px) 190px, 30vw" widths={[240, 400]} /></li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="ba-foot">
+                  <a class="link-arrow" href={wa} target="_blank" rel="noopener">{t.ba.cta} <span aria-hidden="true">↗</span></a>
+                  <p class="hint">{t.ba.hint}</p>
+                </div>
               </div>
             </div>
           ))}

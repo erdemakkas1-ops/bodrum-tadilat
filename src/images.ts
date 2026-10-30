@@ -1,12 +1,24 @@
 // Photo imports (all from the business's own Instagram posts), keyed by file name.
 import type { ImageMetadata } from 'astro';
 import baAvluOnce from './assets/work/ba-avlu-once.jpg';
+import baAvluS1 from './assets/work/ba-avlu-s1.jpg';
+import baAvluS2 from './assets/work/ba-avlu-s2.jpg';
+import baAvluS3 from './assets/work/ba-avlu-s3.jpg';
 import baAvluSonra from './assets/work/ba-avlu-sonra.jpg';
 import baMerdivenOnce from './assets/work/ba-merdiven-once.jpg';
+import baMerdivenS1 from './assets/work/ba-merdiven-s1.jpg';
+import baMerdivenS2 from './assets/work/ba-merdiven-s2.jpg';
+import baMerdivenS3 from './assets/work/ba-merdiven-s3.jpg';
 import baMerdivenSonra from './assets/work/ba-merdiven-sonra.jpg';
 import baTerasOnce from './assets/work/ba-teras-once.jpg';
+import baTerasS1 from './assets/work/ba-teras-s1.jpg';
+import baTerasS2 from './assets/work/ba-teras-s2.jpg';
+import baTerasS3 from './assets/work/ba-teras-s3.jpg';
 import baTerasSonra from './assets/work/ba-teras-sonra.jpg';
 import baTeras2Once from './assets/work/ba-teras2-once.jpg';
+import baTeras2S1 from './assets/work/ba-teras2-s1.jpg';
+import baTeras2S2 from './assets/work/ba-teras2-s2.jpg';
+import baTeras2S3 from './assets/work/ba-teras2-s3.jpg';
 import baTeras2Sonra from './assets/work/ba-teras2-sonra.jpg';
 import cepheOnce from './assets/work/cephe-once.jpg';
 import cepheSonra from './assets/work/cephe-sonra.jpg';
@@ -40,12 +52,24 @@ import surec7Sonuc from './assets/work/surec-7-sonuc.jpg';
 
 export const img: Record<string, ImageMetadata> = {
   'ba-avlu-once': baAvluOnce,
+  'ba-avlu-s1': baAvluS1,
+  'ba-avlu-s2': baAvluS2,
+  'ba-avlu-s3': baAvluS3,
   'ba-avlu-sonra': baAvluSonra,
   'ba-merdiven-once': baMerdivenOnce,
+  'ba-merdiven-s1': baMerdivenS1,
+  'ba-merdiven-s2': baMerdivenS2,
+  'ba-merdiven-s3': baMerdivenS3,
   'ba-merdiven-sonra': baMerdivenSonra,
   'ba-teras-once': baTerasOnce,
+  'ba-teras-s1': baTerasS1,
+  'ba-teras-s2': baTerasS2,
+  'ba-teras-s3': baTerasS3,
   'ba-teras-sonra': baTerasSonra,
   'ba-teras2-once': baTeras2Once,
+  'ba-teras2-s1': baTeras2S1,
+  'ba-teras2-s2': baTeras2S2,
+  'ba-teras2-s3': baTeras2S3,
   'ba-teras2-sonra': baTeras2Sonra,
   'cephe-once': cepheOnce,
   'cephe-sonra': cepheSonra,
