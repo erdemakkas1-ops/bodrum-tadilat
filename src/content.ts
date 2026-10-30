@@ -1,14 +1,14 @@
-// All page copy, Turkish first. Text comes from the business's own Instagram posts and bio
-// wherever possible — keep claims to what they actually say they offer.
+// All page copy, Turkish first. This is a demo/portfolio build: the business, phone and handle are fictional.
 
 export const business = {
-  name: 'Bodrum Tadilat',
-  phoneDisplay: '0546 852 78 86',
-  phoneHref: 'tel:+905468527886',
-  whatsapp: '905468527886',
-  instagram: 'https://www.instagram.com/bodrumtadilat4848/',
-  instagramHandle: '@bodrumtadilat4848',
-  base: 'Turgutreis, Bodrum',
+  // Fictional business for the demo. +90 500 is not an allocated mobile prefix, so the buttons reach nobody.
+  name: 'Beyaztaş Tadilat',
+  phoneDisplay: '0500 000 00 00',
+  phoneHref: 'tel:+905000000000',
+  whatsapp: '905000000000',
+  instagram: 'https://www.instagram.com/',
+  instagramHandle: '@beyaztas.tadilat',
+  base: 'Bodrum',
 };
 
 export type Lang = 'tr' | 'en';
@@ -16,13 +16,13 @@ export type Lang = 'tr' | 'en';
 const tr = {
   htmlLang: 'tr',
   meta: {
-    title: 'Bodrum Tadilat — İç & dış tadilat, boya, mantolama, izolasyon | Turgutreis',
+    title: 'Beyaztaş Tadilat — İç & dış tadilat, boya, mantolama, izolasyon | Bodrum',
     description:
-      'Turgutreis merkezli Bodrum Tadilat: boya badana, dış cephe ve mantolama, teras ve çatı su yalıtımı, seramik, alçı ve anahtar teslim tadilat. Ücretsiz yerinde keşif.',
+      'Bodrum merkezli Beyaztaş Tadilat: boya badana, dış cephe ve mantolama, teras ve çatı su yalıtımı, seramik, alçı ve anahtar teslim tadilat. Ücretsiz yerinde keşif.',
   },
   nav: { work: 'Önce / Sonra', services: 'Hizmetler', process: 'Süreç', contact: 'İletişim', call: 'Ara', other: 'EN', otherLabel: 'English', otherHref: '/en/' },
   hero: {
-    kicker: 'Turgutreis · Bodrum yarımadası',
+    kicker: 'Bodrum yarımadası · İç & dış tadilat',
     titleA: 'Ege evleri,',
     titleEm: 'yeniden',
     titleB: 'bembeyaz.',
@@ -51,7 +51,7 @@ const tr = {
       mesh: 'file + sıva',
       paint: 'silikonlu dış cephe boyası',
     },
-    photoLabel: 'Gerçek bir iş · dış cephe mantolama',
+    photoLabel: 'Örnek iş · dış cephe mantolama',
     photoAlt: 'Mantolama ve boya sonrası bembeyaz, yarım daire pencereli Bodrum evi',
   },
   promises: [
@@ -104,7 +104,7 @@ const tr = {
   process: {
     kicker: 'Süreç',
     title: 'Bir çatı terası, yedi adımda.',
-    intro: 'Turgutreis’te su alan bir çatı. Kestirme yok: her katın kuruması beklenir, köşeler ayrıca güçlendirilir.',
+    intro: 'Bodrum’da su alan bir çatı. Kestirme yok: her katın kuruması beklenir, köşeler ayrıca güçlendirilir.',
     prev: 'Önceki adım',
     next: 'Sonraki adım',
     steps: [
@@ -119,7 +119,7 @@ const tr = {
   },
   gallery: {
     kicker: 'Sahadan',
-    title: 'Instagram’da paylaştıklarımızdan.',
+    title: 'Sahadan, son işlerimizden.',
     more: 'Tüm işler Instagram’da',
     items: {
       kemer: 'Yarım daire pencereli cephe, mantolama sonrası',
@@ -134,8 +134,8 @@ const tr = {
   },
   area: {
     kicker: 'Hizmet bölgesi',
-    title: 'Turgutreis’teyiz. Yarımadanın her yerine geliyoruz.',
-    places: ['Turgutreis', 'Akyarlar', 'Gümüşlük', 'Yalıkavak', 'Bitez', 'Gündoğan', 'Ortakent', 'Bodrum merkez'],
+    title: 'Bodrum’dayız. Yarımadanın her yerine geliyoruz.',
+    places: ['Bodrum merkez', 'Turgutreis', 'Akyarlar', 'Gümüşlük', 'Yalıkavak', 'Bitez', 'Gündoğan', 'Ortakent'],
     note: 'Villa, site ve müstakil evlerde iç ve dış tadilat. Kış öncesi izolasyon ve sezon öncesi boya işleri için erken planlama öneririz.',
   },
   contact: {
@@ -160,7 +160,7 @@ const tr = {
       labels: { name: 'Ad', area: 'Bölge', job: 'İş', msg: 'Not' },
     },
   },
-  footer: { line: 'İç & dış tadilat · Boya · Mantolama · İzolasyon · Seramik', rights: 'Tüm fotoğraflar kendi işlerimizdendir.' },
+  footer: { line: 'İç & dış tadilat · Boya · Mantolama · İzolasyon · Seramik', rights: 'Örnek tasarım: işletme adı ve iletişim bilgileri kurgusaldır.' },
   sticky: { call: 'Ara', wa: 'WhatsApp' },
   skip: 'İçeriğe geç',
 };
@@ -168,13 +168,13 @@ const tr = {
 const en: typeof tr = {
   htmlLang: 'en',
   meta: {
-    title: 'Bodrum Tadilat — Renovation, painting, insulation & tiling in Bodrum | Turgutreis',
+    title: 'Beyaztaş Tadilat — Renovation, painting, insulation & tiling | Bodrum',
     description:
-      'Turgutreis-based renovation team: interior & exterior painting, facade insulation, roof and terrace waterproofing, tiling, plaster and turnkey renovation across the Bodrum peninsula. Free on-site survey.',
+      'Bodrum-based renovation team: interior & exterior painting, facade insulation, roof and terrace waterproofing, tiling, plaster and turnkey renovation across the Bodrum peninsula. Free on-site survey.',
   },
   nav: { work: 'Before / After', services: 'Services', process: 'Process', contact: 'Contact', call: 'Call', other: 'TR', otherLabel: 'Türkçe', otherHref: '/' },
   hero: {
-    kicker: 'Turgutreis · Bodrum peninsula',
+    kicker: 'Bodrum peninsula · Interior & exterior',
     titleA: 'Aegean homes,',
     titleEm: 'brilliant',
     titleB: 'white again.',
@@ -203,7 +203,7 @@ const en: typeof tr = {
       mesh: 'mesh + render',
       paint: 'silicone facade paint',
     },
-    photoLabel: 'A real job · facade insulation',
+    photoLabel: 'Sample job · facade insulation',
     photoAlt: 'A bright white Bodrum house with an arched window after insulation and painting',
   },
   promises: ['Free on-site survey', 'Instalment payment options', 'First-class materials', 'Clean, tidy handover'],
@@ -251,7 +251,7 @@ const en: typeof tr = {
   process: {
     kicker: 'Process',
     title: 'One roof terrace, seven steps.',
-    intro: 'A leaking roof in Turgutreis. No shortcuts: each coat is left to cure, and the corners get extra reinforcement.',
+    intro: 'A leaking roof in Bodrum. No shortcuts: each coat is left to cure, and the corners get extra reinforcement.',
     prev: 'Previous step',
     next: 'Next step',
     steps: [
@@ -266,7 +266,7 @@ const en: typeof tr = {
   },
   gallery: {
     kicker: 'From the site',
-    title: 'A few from our Instagram.',
+    title: 'A few recent jobs, from the site.',
     more: 'All projects on Instagram',
     items: {
       kemer: 'Arched-window facade after insulation',
@@ -281,8 +281,8 @@ const en: typeof tr = {
   },
   area: {
     kicker: 'Where we work',
-    title: 'Based in Turgutreis. Working across the peninsula.',
-    places: ['Turgutreis', 'Akyarlar', 'Gümüşlük', 'Yalıkavak', 'Bitez', 'Gündoğan', 'Ortakent', 'Bodrum town'],
+    title: 'Based in Bodrum. Working across the peninsula.',
+    places: ['Bodrum town', 'Turgutreis', 'Akyarlar', 'Gümüşlük', 'Yalıkavak', 'Bitez', 'Gündoğan', 'Ortakent'],
     note: 'Villas, holiday sites and detached houses. Book waterproofing before winter and painting before the season — we fill up early.',
   },
   contact: {
@@ -307,7 +307,7 @@ const en: typeof tr = {
       labels: { name: 'Name', area: 'Area', job: 'Work', msg: 'Note' },
     },
   },
-  footer: { line: 'Interior & exterior renovation · Painting · Insulation · Waterproofing · Tiling', rights: 'All photos are from our own jobs.' },
+  footer: { line: 'Interior & exterior renovation · Painting · Insulation · Waterproofing · Tiling', rights: 'Design sample: the business name and contact details are fictional.' },
   sticky: { call: 'Call', wa: 'WhatsApp' },
   skip: 'Skip to content',
 };

@@ -3,7 +3,7 @@ import '@fontsource-variable/fraunces/opsz.css';
 import '@fontsource-variable/fraunces/opsz-italic.css';
 import '@fontsource-variable/hanken-grotesk/wght.css';
 import '../styles/global.css';
-import { business, copy, type Lang } from '../content';
+import { copy, type Lang } from '../content';
 import { img } from '../images';
 import { url, primaryUrl } from '../url';
 import { getImage } from 'astro:assets';
@@ -15,17 +15,7 @@ const t = copy[lang];
 const ogImage = await getImage({ src: img['hero-teras'], width: 1200, height: 630, fit: 'cover', format: 'jpg' });
 const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
 const hreflang = (p: string) => primaryUrl(url(p));
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'HomeAndConstructionBusiness',
-  name: business.name,
-  telephone: '+905468527886',
-  address: { '@type': 'PostalAddress', addressLocality: 'Turgutreis, Bodrum', addressRegion: 'Muğla', addressCountry: 'TR' },
-  areaServed: 'Bodrum',
-  sameAs: [business.instagram],
-  knowsLanguage: ['tr', 'en'],
-};
+// Demo build: the business is fictional, so no LocalBusiness structured data and no indexing.
 ---
 <!doctype html>
 <html lang={t.htmlLang}>
@@ -35,6 +25,7 @@ const jsonLd = {
     <title>{t.meta.title}</title>
     <meta name="description" content={t.meta.description} />
     <meta name="theme-color" content="#f3efe6" />
+    <meta name="robots" content="noindex" />
     <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
     <link rel="alternate" hreflang="tr" href={hreflang('/')} />
     <link rel="alternate" hreflang="en" href={hreflang('/en/')} />
@@ -45,7 +36,6 @@ const jsonLd = {
     <meta property="og:description" content={t.meta.description} />
     <meta property="og:image" content={abs(ogImage.src)} />
     <meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_GB'} />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>

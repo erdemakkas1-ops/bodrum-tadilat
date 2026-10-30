@@ -1,4 +1,4 @@
-// Photo imports (all from the business's own Instagram posts), keyed by file name.
+// Project photo imports, keyed by file name.
 import type { ImageMetadata } from 'astro';
 import baAvluOnce from './assets/work/ba-avlu-once.jpg';
 import baAvluS1 from './assets/work/ba-avlu-s1.jpg';
