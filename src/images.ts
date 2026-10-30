@@ -22,6 +22,40 @@ import baTeras2S3 from './assets/work/ba-teras2-s3.jpg';
 import baTeras2Sonra from './assets/work/ba-teras2-sonra.jpg';
 import cepheOnce from './assets/work/cephe-once.jpg';
 import cepheSonra from './assets/work/cephe-sonra.jpg';
+import demoBaCepheOnce from './assets/work/demo-ba-cephe-once.jpg';
+import demoBaCepheS1 from './assets/work/demo-ba-cephe-s1.jpg';
+import demoBaCepheS2 from './assets/work/demo-ba-cephe-s2.jpg';
+import demoBaCepheS3 from './assets/work/demo-ba-cephe-s3.jpg';
+import demoBaCepheSonra from './assets/work/demo-ba-cephe-sonra.jpg';
+import demoBaGirisOnce from './assets/work/demo-ba-giris-once.jpg';
+import demoBaGirisS1 from './assets/work/demo-ba-giris-s1.jpg';
+import demoBaGirisS2 from './assets/work/demo-ba-giris-s2.jpg';
+import demoBaGirisS3 from './assets/work/demo-ba-giris-s3.jpg';
+import demoBaGirisSonra from './assets/work/demo-ba-giris-sonra.jpg';
+import demoBaKanatOnce from './assets/work/demo-ba-kanat-once.jpg';
+import demoBaKanatS1 from './assets/work/demo-ba-kanat-s1.jpg';
+import demoBaKanatS2 from './assets/work/demo-ba-kanat-s2.jpg';
+import demoBaKanatS3 from './assets/work/demo-ba-kanat-s3.jpg';
+import demoBaKanatSonra from './assets/work/demo-ba-kanat-sonra.jpg';
+import demoBaPencereOnce from './assets/work/demo-ba-pencere-once.jpg';
+import demoBaPencereS1 from './assets/work/demo-ba-pencere-s1.jpg';
+import demoBaPencereS2 from './assets/work/demo-ba-pencere-s2.jpg';
+import demoBaPencereS3 from './assets/work/demo-ba-pencere-s3.jpg';
+import demoBaPencereSonra from './assets/work/demo-ba-pencere-sonra.jpg';
+import demoCepheOnce from './assets/work/demo-cephe-once.jpg';
+import demoCepheSonra from './assets/work/demo-cephe-sonra.jpg';
+import demoGAksam from './assets/work/demo-g-aksam.jpg';
+import demoGBegonvil from './assets/work/demo-g-begonvil.jpg';
+import demoGGiris from './assets/work/demo-g-giris.jpg';
+import demoGIskele from './assets/work/demo-g-iskele.jpg';
+import demoGKanat from './assets/work/demo-g-kanat.jpg';
+import demoGKemer from './assets/work/demo-g-kemer.jpg';
+import demoGKesif from './assets/work/demo-g-kesif.jpg';
+import demoGLevha from './assets/work/demo-g-levha.jpg';
+import demoHizmetAlci from './assets/work/demo-hizmet-alci.jpg';
+import demoHizmetCephe from './assets/work/demo-hizmet-cephe.jpg';
+import demoHizmetIzolasyon from './assets/work/demo-hizmet-izolasyon.jpg';
+import demoOg from './assets/work/demo-og.jpg';
 import gAvlu from './assets/work/g-avlu.jpg';
 import gBegonvil from './assets/work/g-begonvil.jpg';
 import gIskele from './assets/work/g-iskele.jpg';
@@ -73,6 +107,40 @@ export const img: Record<string, ImageMetadata> = {
   'ba-teras2-sonra': baTeras2Sonra,
   'cephe-once': cepheOnce,
   'cephe-sonra': cepheSonra,
+  'demo-ba-cephe-once': demoBaCepheOnce,
+  'demo-ba-cephe-s1': demoBaCepheS1,
+  'demo-ba-cephe-s2': demoBaCepheS2,
+  'demo-ba-cephe-s3': demoBaCepheS3,
+  'demo-ba-cephe-sonra': demoBaCepheSonra,
+  'demo-ba-giris-once': demoBaGirisOnce,
+  'demo-ba-giris-s1': demoBaGirisS1,
+  'demo-ba-giris-s2': demoBaGirisS2,
+  'demo-ba-giris-s3': demoBaGirisS3,
+  'demo-ba-giris-sonra': demoBaGirisSonra,
+  'demo-ba-kanat-once': demoBaKanatOnce,
+  'demo-ba-kanat-s1': demoBaKanatS1,
+  'demo-ba-kanat-s2': demoBaKanatS2,
+  'demo-ba-kanat-s3': demoBaKanatS3,
+  'demo-ba-kanat-sonra': demoBaKanatSonra,
+  'demo-ba-pencere-once': demoBaPencereOnce,
+  'demo-ba-pencere-s1': demoBaPencereS1,
+  'demo-ba-pencere-s2': demoBaPencereS2,
+  'demo-ba-pencere-s3': demoBaPencereS3,
+  'demo-ba-pencere-sonra': demoBaPencereSonra,
+  'demo-cephe-once': demoCepheOnce,
+  'demo-cephe-sonra': demoCepheSonra,
+  'demo-g-aksam': demoGAksam,
+  'demo-g-begonvil': demoGBegonvil,
+  'demo-g-giris': demoGGiris,
+  'demo-g-iskele': demoGIskele,
+  'demo-g-kanat': demoGKanat,
+  'demo-g-kemer': demoGKemer,
+  'demo-g-kesif': demoGKesif,
+  'demo-g-levha': demoGLevha,
+  'demo-hizmet-alci': demoHizmetAlci,
+  'demo-hizmet-cephe': demoHizmetCephe,
+  'demo-hizmet-izolasyon': demoHizmetIzolasyon,
+  'demo-og': demoOg,
   'g-avlu': gAvlu,
   'g-begonvil': gBegonvil,
   'g-iskele': gIskele,

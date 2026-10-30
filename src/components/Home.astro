@@ -14,14 +14,12 @@ const wa = `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(t.conta
 const pad = (n: number) => String(n).padStart(2, '0');
 
 const pairImgs = [
-  { before: img['cephe-once'], after: img['cephe-sonra'] },
+  { before: img['demo-cephe-once'], after: img['demo-cephe-sonra'] },
   { before: img['mutfak-once'], after: img['mutfak-sonra'] },
 ];
-const galleryKeys = ['kemer', 'yikim', 'begonvil', 'usta', 'villa', 'kapi', 'pencere', 'avlu'] as const;
-const galleryImg: Record<(typeof galleryKeys)[number], string> = {
-  kemer: 'g-kemer', yikim: 'g-yikim', begonvil: 'g-begonvil', usta: 'g-seramik-usta',
-  villa: 'g-villa', kapi: 'g-kapi', pencere: 'g-pencere', avlu: 'g-avlu',
-};
+const galleryKeys = ['kemer', 'iskele', 'begonvil', 'levha', 'aksam', 'giris', 'kesif', 'kanat'] as const;
+// Services whose photo comes from the demo set; the rest use their own frame (see images.ts).
+const serviceImg = (key: string) => img[`demo-hizmet-${key}`] ?? img[`hizmet-${key}`];
 const processImg = ['surec-1-kazima', 'surec-2-sap', 'surec-3-kat1', 'surec-4-kat2', 'surec-5-kece', 'surec-6-likit', 'surec-7-sonuc'];
 ---
 <Base lang={lang}>
@@ -75,9 +73,9 @@ const processImg = ['surec-1-kazima', 'surec-2-sap', 'surec-3-kat1', 'surec-4-ka
           {t.ba.projects.map((p, i) => (
             <div class="ba-panel" role="tabpanel" id={`panel-${p.id}`} aria-labelledby={`tab-${p.id}`} hidden={i !== 0}>
               <div class="compare" style="--pos: 50%">
-                <Photo class="compare-after" src={img[`ba-${p.id}-sonra`]} alt={p.afterAlt} sizes="(min-width: 960px) 560px, 100vw" widths={[480, 800, 1120]} />
+                <Photo class="compare-after" src={img[`demo-ba-${p.id}-sonra`]} alt={p.afterAlt} sizes="(min-width: 960px) 560px, 100vw" widths={[480, 800, 1120]} />
                 <div class="compare-before">
-                  <Photo src={img[`ba-${p.id}-once`]} alt={p.beforeAlt} sizes="(min-width: 960px) 560px, 100vw" widths={[480, 800, 1120]} />
+                  <Photo src={img[`demo-ba-${p.id}-once`]} alt={p.beforeAlt} sizes="(min-width: 960px) 560px, 100vw" widths={[480, 800, 1120]} />
                 </div>
                 <span class="compare-line" aria-hidden="true"><span class="compare-knob">⟷</span></span>
                 <span class="tag tag-l" aria-hidden="true">{t.ba.before}</span>
@@ -100,7 +98,7 @@ const processImg = ['surec-1-kazima', 'surec-2-sap', 'surec-3-kat1', 'surec-4-ka
                   <p class="ba-label">{t.ba.stripTitle}</p>
                   <ul class="ba-thumbs" role="list">
                     {[1, 2, 3].map((k) => (
-                      <li><Photo src={img[`ba-${p.id}-s${k}`]} alt={t.ba.stripAlt} sizes="(min-width: 960px) 190px, 30vw" widths={[240, 400]} /></li>
+                      <li><Photo src={img[`demo-ba-${p.id}-s${k}`]} alt={t.ba.stripAlt} sizes="(min-width: 960px) 190px, 30vw" widths={[240, 400]} /></li>
                     ))}
                   </ul>
                 </div>
@@ -150,7 +148,7 @@ const processImg = ['surec-1-kazima', 'surec-2-sap', 'surec-3-kat1', 'surec-4-ka
                   <p>{s.text}</p>
                 </div>
                 <div class="sv-thumb wipe">
-                  <Photo src={img[`hizmet-${s.key}`]} alt={s.alt} sizes="(min-width: 960px) 1px, 34vw" widths={[320, 560]} />
+                  <Photo src={serviceImg(s.key)} alt={s.alt} sizes="(min-width: 960px) 1px, 34vw" widths={[320, 560]} />
                 </div>
               </li>
             ))}
@@ -160,7 +158,7 @@ const processImg = ['surec-1-kazima', 'surec-2-sap', 'surec-3-kat1', 'surec-4-ka
           <div class="sv-frame">
             {t.services.items.map((s, i) => (
               <div class="sv-slide" data-key={s.key} data-active={i === 0 ? 'true' : 'false'}>
-                <Photo src={img[`hizmet-${s.key}`]} alt="" sizes="(min-width: 960px) 40vw, 1px" widths={[640, 960, 1280]} />
+                <Photo src={serviceImg(s.key)} alt="" sizes="(min-width: 960px) 40vw, 1px" widths={[640, 960, 1280]} />
               </div>
             ))}
           </div>
@@ -210,7 +208,7 @@ const processImg = ['surec-1-kazima', 'surec-2-sap', 'surec-3-kat1', 'surec-4-ka
         <div class="g-grid">
           {galleryKeys.map((k, i) => (
             <figure class={`g g-${i + 1} wipe`}>
-              <Photo src={img[galleryImg[k]]} alt={t.gallery.items[k]} sizes="(min-width: 960px) 30vw, 50vw" widths={[400, 640, 960]} />
+              <Photo src={img[`demo-g-${k}`]} alt={t.gallery.items[k]} sizes="(min-width: 960px) 30vw, 50vw" widths={[400, 640, 960]} />
               <figcaption>{t.gallery.items[k]}</figcaption>
             </figure>
           ))}

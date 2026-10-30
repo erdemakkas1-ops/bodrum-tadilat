@@ -12,7 +12,7 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = copy[lang];
 
-const ogImage = await getImage({ src: img['hero-teras'], width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+const ogImage = await getImage({ src: img['demo-og'], width: 1200, height: 630, fit: 'cover', format: 'jpg' });
 const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
 const hreflang = (p: string) => primaryUrl(url(p));
 // Demo build: the business is fictional, so no LocalBusiness structured data and no indexing.
