@@ -1,0 +1,28 @@
+---
+// Responsive AVIF/WebP picture with sensible default widths.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  sizes: string;
+  widths?: number[];
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+}
+const { src, alt, sizes, widths = [480, 800, 1200, 1600], class: cls, loading = 'lazy', fetchpriority } = Astro.props;
+const usable = widths.filter((w) => w <= src.width);
+---
+<Picture
+  src={src}
+  alt={alt}
+  sizes={sizes}
+  widths={usable.length ? usable : [src.width]}
+  formats={['avif', 'webp']}
+  quality={72}
+  loading={loading}
+  fetchpriority={fetchpriority}
+  class={cls}
+/>
