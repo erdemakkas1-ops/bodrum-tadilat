@@ -5,6 +5,7 @@ import Logo from './Logo.astro';
 import Film from './Film.astro';
 import { business, copy, type Lang } from '../content';
 import { img } from '../images';
+import { url } from '../url';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -26,7 +27,7 @@ const processImg = ['surec-1-kazima', 'surec-2-sap', 'surec-3-kat1', 'surec-4-ka
 <Base lang={lang}>
   <header class="site-header">
     <div class="wrap header-row">
-      <a class="brand" href={lang === 'tr' ? '/' : '/en/'} aria-label={business.name}>
+      <a class="brand" href={url(lang === 'tr' ? '/' : '/en/')} aria-label={business.name}>
         <Logo />
       </a>
       <nav class="nav" aria-label={lang === 'tr' ? 'Ana menü' : 'Main menu'}>
@@ -36,7 +37,7 @@ const processImg = ['surec-1-kazima', 'surec-2-sap', 'surec-3-kat1', 'surec-4-ka
         <a href="#iletisim">{t.nav.contact}</a>
       </nav>
       <div class="header-actions">
-        <a class="lang" href={t.nav.otherHref} hreflang={lang === 'tr' ? 'en' : 'tr'} aria-label={t.nav.otherLabel}>{t.nav.other}</a>
+        <a class="lang" href={url(t.nav.otherHref)} hreflang={lang === 'tr' ? 'en' : 'tr'} aria-label={t.nav.otherLabel}>{t.nav.other}</a>
         <a class="btn btn-ink btn-sm" href={business.phoneHref}>
           <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg>
           <span class="hide-sm">{business.phoneDisplay}</span><span class="show-sm">{t.nav.call}</span>

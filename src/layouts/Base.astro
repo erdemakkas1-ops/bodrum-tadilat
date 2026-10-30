@@ -5,6 +5,7 @@ import '@fontsource-variable/hanken-grotesk/wght.css';
 import '../styles/global.css';
 import { business, copy, type Lang } from '../content';
 import { img } from '../images';
+import { url, primaryUrl } from '../url';
 import { getImage } from 'astro:assets';
 
 interface Props { lang: Lang }
@@ -13,6 +14,7 @@ const t = copy[lang];
 
 const ogImage = await getImage({ src: img['hero-teras'], width: 1200, height: 630, fit: 'cover', format: 'jpg' });
 const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
+const hreflang = (p: string) => primaryUrl(url(p));
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -33,11 +35,11 @@ const jsonLd = {
     <title>{t.meta.title}</title>
     <meta name="description" content={t.meta.description} />
     <meta name="theme-color" content="#f3efe6" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" hreflang="tr" href={abs('/')} />
-    <link rel="alternate" hreflang="en" href={abs('/en/')} />
-    <link rel="alternate" hreflang="x-default" href={abs('/')} />
-    {Astro.site && <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />}
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+    <link rel="alternate" hreflang="tr" href={hreflang('/')} />
+    <link rel="alternate" hreflang="en" href={hreflang('/en/')} />
+    <link rel="alternate" hreflang="x-default" href={hreflang('/')} />
+    <link rel="canonical" href={primaryUrl(Astro.url.pathname)} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={t.meta.title} />
     <meta property="og:description" content={t.meta.description} />

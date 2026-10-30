@@ -6,6 +6,7 @@
 import Photo from './Photo.astro';
 import { business, copy, type Lang } from '../content';
 import { img } from '../images';
+import { url } from '../url';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -46,8 +47,8 @@ const pins: { x: number; y: number; from: number; to: number; b?: string; text: 
         {frames.map(([name, sky, [a, b]], k) => (
           <div class="film__frame" data-k={k} data-in={a} data-in-to={b} style={`--sky: ${sky}`}>
             <img
-              src={`/film/${name}-2000.webp`}
-              srcset={`/film/${name}-1200.webp 1200w, /film/${name}-2000.webp 2000w`}
+              src={url(`/film/${name}-2000.webp`)}
+              srcset={`${url(`/film/${name}-1200.webp`)} 1200w, ${url(`/film/${name}-2000.webp`)} 2000w`}
               sizes="(max-aspect-ratio: 1/1) 220vw, 100vw"
               width="2000" height="1116" alt=""
               decoding="async"
